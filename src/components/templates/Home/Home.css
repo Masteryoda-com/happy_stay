@@ -1,0 +1,10 @@
+.home-container{
+    margin-top: 20px
+}
+.home-banner{
+    width: 100%;
+}
+.home-banner img{
+    width: 100%;
+    border-radius: 10px;
+}
