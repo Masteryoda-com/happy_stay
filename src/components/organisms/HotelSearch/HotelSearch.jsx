@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState , useEffect, useRef} from "react";
 import "./HotelSearch.css";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; //
@@ -15,11 +15,15 @@ function HotelSearch() {
       key: 'selection'
     }
   ]);
+  let menuRef = useRef();
+
   useEffect(() =>{
-    document.addEventListener("mousedown" , () =>{
-      setOpendate(false)
-    })
-  })
+    document.addEventListener("mousedown" , (event) =>{
+      if (!menuRef.current.contains(event.target)){
+        setOpendate(false);
+      }
+    });
+  });
   return (
     <div>
       <div className="hotel-search-inputs">
@@ -27,7 +31,7 @@ function HotelSearch() {
           <i class="fa-solid fa-bed"></i>
           <input type="text" placeholder="Where Are you going?" />
         </div>
-        <div className="input-checkin-checkout-date">
+        <div className="input-checkin-checkout-date" ref = {menuRef}>
         <i class="fa-solid fa-calendar-days" onClick={()=>setOpendate(!opendate)}></i>
         <span>{`${format(date[0].startDate, "dd/MM/yyyy")} - ${format(date[0].endDate, "dd/MM/yyyy")}`}</span>
         {opendate && 
