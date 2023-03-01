@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import "./HotelSearch.css";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; //
@@ -15,6 +15,11 @@ function HotelSearch() {
       key: 'selection'
     }
   ]);
+  useEffect(() =>{
+    document.addEventListener("mousedown" , () =>{
+      setOpendate(false)
+    })
+  })
   return (
     <div>
       <div className="hotel-search-inputs">
